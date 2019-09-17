@@ -1,23 +1,21 @@
 import { Module, Global } from '@nestjs/common'
-import { AppConfig, DatabaseConfig } from './config'
+import { buildConfigProviders } from './config/factory/build-config-providers'
+import { configList } from './config'
+import { TypeOrmModule } from '@nestjs/typeorm'
 
-const envFile = '.env'
+import { TypeOrmConfigService } from './typeorm/typeorm-config.service'
+
+const configProviders = buildConfigProviders()
 
 @Global()
 @Module({
-  imports: [],
-  exports: [
+  imports: [
+    TypeOrmModule.forRootAsync({
+      useClass: TypeOrmConfigService
+    })
   ],
+  exports: [...configList],
   controllers: [],
-  providers: [
-    {
-      provide: AppConfig,
-      useValue: new AppConfig(envFile)
-    },
-    {
-      provide: DatabaseConfig,
-      useValue: new DatabaseConfig(envFile)
-    }
-  ]
+  providers: [...configProviders]
 })
 export class CommonModule {}

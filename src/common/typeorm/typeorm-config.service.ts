@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common'
 import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm'
-import { DatabaseConfig } from '../config';
+import { DatabaseConfig } from '../config'
 
 @Injectable()
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
-
-  public constructor(private readonly _DatabaseConfig: DatabaseConfig) { }
+  public constructor(private readonly _DatabaseConfig: DatabaseConfig) {}
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
@@ -16,7 +15,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       password: this._DatabaseConfig.DB_PASSWORD,
       database: this._DatabaseConfig.DB_DATABASE,
       entities: ['../../**/*.entity{.ts,.js}'],
-      synchronize: false,
-    };
+      synchronize: false
+    }
   }
 }

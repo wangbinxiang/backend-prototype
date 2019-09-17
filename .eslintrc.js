@@ -56,9 +56,6 @@ module.exports =  {
       {
         max: 1
       }
-    ],
-    '@typescript-eslint/no-parameter-properties':{
-      "allows": ["all"]
-    }
+    ]
   }
 }

@@ -2,16 +2,14 @@ import * as Joi from 'joi'
 
 import { BaseConfig } from './base.config'
 
-
-export class DatabaseConfig extends BaseConfig{
-
+export class DatabaseConfig extends BaseConfig {
   protected validatorSchema(): Joi.ObjectSchema {
     return Joi.object({
-      DB_HOST: Joi.string(),
-      DB_PORT: Joi.number().default(3306),
-      DB_DATABASE: Joi.string(),
-      DB_USERNAME: Joi.string(),
-      DB_PASSWORD: Joi.string(),
+      DB_HOST: Joi.string().required(),
+      DB_PORT: Joi.number().required(),
+      DB_DATABASE: Joi.string().required(),
+      DB_USERNAME: Joi.string().required(),
+      DB_PASSWORD: Joi.string().required()
     })
   }
 

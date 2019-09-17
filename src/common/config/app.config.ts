@@ -1,11 +1,8 @@
-import { DotenvParseOutput } from 'dotenv'
 import * as Joi from 'joi'
 
 import { BaseConfig } from './base.config'
 
-
-export class AppConfig extends BaseConfig{
-
+export class AppConfig extends BaseConfig {
   protected validatorSchema(): Joi.ObjectSchema {
     return Joi.object({
       APP_ENV: Joi.string()
